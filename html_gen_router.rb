@@ -22,7 +22,7 @@ class HtmlGen
       puts " <link rel='stylesheet' href='styles.css' type='text/css'>"
       puts " </head>"
       puts " <body>"
-      puts "<h1> Items on sale at LCBO on #{@time} in descending order</h1>"
+
   end
 
     def print_footer
@@ -34,10 +34,11 @@ class HtmlGen
     cents_string.to_f/100
   end
 
-  def all_products(a)
+  def sale_products(a)
     products = retrieve_clean_data(a)
 
       print_header
+      puts "<h1> Items on sale at LCBO on #{@time} in descending order</h1>"
     products.each do |product|
       puts "<div class='product'>"
       puts " <h3>#{product['name']}</h3>"
@@ -54,9 +55,38 @@ class HtmlGen
     end
   end
 
+def all_products(a)
+  products = retrieve_clean_data(a)
+print_header
+
+    puts "<h1>All products</h1>"
+
+
+    products.each do |product|
+      puts "<div class='product'>"
+      puts " <h2>#{product['name']}</h2>"
+      puts " <img src='#{product['image_thumb_url']}' class='product-thumbnail'/>"
+      puts " <ul class='product-data'>"
+      puts " <li>id: #{product['id']}</li>"
+      puts " <li>#{product['producer_name']}</li>"
+      puts " <li>#{product['primary_category']}</li>"
+      puts " <li>#{product['secondary_category']}</li>"
+      puts " <li>#{product['volume_in_milliliters']} ml</li>"
+      puts " <li>$#{fix_price(product['price_in_cents'])}</li>"
+      puts " </ul>"
+      puts "</div>"
+    end
+
+    puts "<footer>"
+    puts " For more info see the <a href='http://lcboapi.com/docs/products'>products API docs</a>."
+    puts "</footer>"
+
+    print_footer
+  end
+
 end
 
 
-b=HtmlGen.new
-b.all_products("http://lcboapi.com/products?q=&order=limited_time_offer_savings_in_cents.desc")
+
+
 
