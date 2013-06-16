@@ -22,7 +22,7 @@ class HtmlGen
       puts " <link rel='stylesheet' href='styles.css' type='text/css'>"
       puts " </head>"
       puts " <body>"
-      puts "<h1> Items on sale at LCBO on #{@time} </h1>"
+      puts "<h1> Items on sale at LCBO on #{@time} in descending order</h1>"
   end
 
     def print_footer
