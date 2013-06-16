@@ -46,7 +46,7 @@ class HtmlGen
       puts " <li>#{product['package']}</li>"
       puts " <li><strong>Sale price: </strong>$#{fix_price(product['price_in_cents'])}</li>"
       puts " <li>Regular Price $#{fix_price(product['regular_price_in_cents'])}</li>"
-      puts " <li>Saving of $#{fix_price(product['limited_time_offer_savings_in_cents'])}</li>"
+      puts " <li>Saving of $#{fix_price(product['limited_time_offer_savings_in_cents'])}0</li>"
       puts " <li> Ends on #{product['limited_time_offer_ends_on']} </li>"
       puts " </ul>"
       puts "</div>"
